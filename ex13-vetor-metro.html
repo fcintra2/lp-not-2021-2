@@ -16,6 +16,26 @@
             1) Crie um vetor vazio e depois insira as estações no
                 vetor. Faça um loop for TRADICIONAL para exibir as 
                 estações e depois passe um traço horizontal (<hr>).
+        */
+
+        let linha1 = []  // Vetor vazio
+
+        // Pode ser feito também um único push() com todas
+        // as estações
+        linha1.push('Santa Teresinha')
+        linha1.push('Estação')
+        linha1.push('Centro')
+        linha1.push('Jardim Lima')
+        linha1.push('Aeroporto I')
+
+        // Exibindo as estações com um loop for tradicional
+        for(let i = 0; i < linha1.length; i++) {
+            document.write(linha1[i] + '<br>')
+        }
+
+        document.write('<hr>')
+
+        /*
 
             No ano seguinte, a linha foi expandida com a inauguração
                 das estações City Petrópolis, no extremo norte, e Aeroporto
@@ -25,7 +45,22 @@
                 Faça um loop FOR..OF para exibir as estações e depois
                 passe um traço horizontal (<hr>).
 
+        */
 
+        // Inserindo estação no extremo norte, no início do vetor
+        linha1.unshift('City Petrópolis')
+        
+        // Inserindo estação no extremo sul, no final do vetor
+        linha1.push('Aeroporto IV')
+
+        // Exibindo as estações com loop for..of
+        for(let estacao of linha1) {
+            document.write(estacao + '<br>')
+        }
+
+        document.write('<hr>')
+
+        /*
             Já em 2125, foi criada a estação Vila Imperador, entre
             as estações Santa Teresinha e Estação, para atender à grande
             demanda da maior universidade da cidade, a Fatec de Franca.
@@ -36,13 +71,45 @@
                 Faça um loop for TRADICIONAL EM SENTIDO INVERSO para exibir
                 as estações e depois passe um traço horizontal (<hr>).
 
+        */
+
+        // Inserindo nova estação na posição onde se encontra Estação
+        linha1.splice(linha1.indexOf('Estação'), 0, 'Vila Imperador')
+
+        // Inserindo nova estação na posição onde se encontra Aeroporto I
+        linha1.splice(linha1.indexOf('Aeroporto I'), 0, 'Jardim Alvorada')
+
+        // Exibindo as estações com loop for tradicional inverso
+        for(let i = linha1.length - 1; i >= 0; i--) {
+            document.write(linha1[i] + '<br>')
+        }
+
+        document.write('<hr>')
+
+        /*
+
             Em 2130, a estação Centro foi desativada, e em seu lugar duas
             novas estações entraram em funcionamento: as estações 9 de Julho
             e Champagnat.
 
             4) Modifique o vetor de acordo com as alterações.
             Faça um loop for TRADICIONAL para exibir as estações e depois
-            passe um traço horizontal (<hr>).  
+            passe um traço horizontal (<hr>).
+            
+        */
+
+        // Usando o splice() para fazer a substituição do Centro por 9 de Julho
+        // e também inserindo Champagnat
+        linha1.splice(linha1.indexOf('Centro'), 1, '9 de Julho', 'Champagnat')
+
+        // Exibindo as estações com o loop for tradicional
+        for(let i = 0; i < linha1.length; i++) {
+            document.write(linha1[i] + '<br>')
+        }
+
+        document.write('<hr>')
+
+        /*
 
             Em 2133, no entanto, Franca entrou em guerra com os 
             restinguenses, que invadiram e destruíram as duas estações 
@@ -53,6 +120,30 @@
                 Faça um loop FOR...OF para exibir as estações e depois
                 passe um traço horizontal (<hr>).              
         */
+
+        // Remoção dos duas últimas estações
+        //linha1.splice(linha1.indexOf('Aeroporto I'), 2)
+
+        // splice() aceita posições negativas. Nessa caso, a contagem
+        // se dá a partir do último elemento, retroativamente
+
+        //linha1.splice(-2, 2)
+
+        // Outra opção para remover as duas últimas estações é
+        // aplicar dois pop()
+        linha1.pop()
+        linha1.pop()
+
+        // Removendo a estação Santa Teresinha
+        linha1.splice(linha1.indexOf('Santa Teresinha'), 1)
+
+        // Exibindo as estações com for..of
+        for(let estacao of linha1) {
+            document.write(estacao + '<br>')
+        }
+
+        document.write('<hr>')
+
     </script>
 </head>
 <body>
