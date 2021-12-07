@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concentrador numérico</title>
+    <style>
+        * {
+            font-family: Oxanium, Arial, sans-serif;
+        }
+
+        html,
+        body {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            font-size: 12pt;
+            line-height: 18pt;
+            color: #444;
+        }
+
+        body {
+            background-color: olivedrab;
+            background-image: linear-gradient(lightgreen 50%, olivedrab);
+            background-repeat: no-repeat;
+            padding: 0;
+        }
+
+        body>div {
+            background: whitesmoke;
+            margin: 3%;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+            color: olivedrab;
+            text-shadow: 2px 2px 2px rgba(107, 142, 35, 0.5);
+
+        }
+
+        div>div {
+            padding: 10px;
+            width: 70%;
+            max-width: 90%;
+            min-width: 250px;
+            margin: 1% auto;
+            text-align: center;
+        }
+
+        div label {
+            display: block;
+        }
+
+        button {
+            font-size: 12pt;
+            padding: 8px;
+            border-radius: 8px;
+            color: white;
+            background-color: olivedrab;
+        }
+
+        p {
+            display: inline-block;
+            width: 30%;
+            margin: 0;
+        }
+
+        p span {
+            font-weight: bold;
+            color: olivedrab;
+        }
+
+        div div:last-of-type {
+            background-color: mintcream;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div>
+        <h1>Concentrador numérico</h1>
+
+        <div>
+            <label>Informe um número</label>
+            <input id="num" type="number">
+        </div>
+
+        <div>
+            <button id="acumular">Concentrar!</button>
+        </div>
+
+        <div>
+            <p>Quantidade: <span id="quant">0</span></p>
+            <p>Média: <span id="media">0</span></p>
+            <p>Soma: <span id="soma">0</span></p>
+        </div>
+    </div>
+
+    <script>
+        
+        /*
+            3. Com JavaScript, capture todos os elementos da parte HTML que tenham id.
+               Utilize umdos métodos  para capturar metade dos elementos e o  outro
+               método  para capturaros demais
+        */
+        const elNum = document.querySelector('#num')
+        const elAcumular = document.querySelector('#acumular')
+        const elQuant = document.querySelector('#quant')
+        const elMedia = document.getElementById('media')
+        const elSoma = document.getElementById('soma')
+
+        /*
+            4. Declare um vetor vazio
+        */
+        let numeros = []
+
+        /*
+            5. Declare   uma   função  que   receba   um   vetor   de   números,
+               calcule   a   soma   de   seuselementos e retorne o resultado. 
+               Dentro da função, utilize um loopfor..of para iterarentre os elementos
+               do vetor..
+        */
+        function somaVet(vet) {
+            let soma = 0
+            for(let num of vet) {
+                soma += num
+            }
+            return soma
+        }
+
+        /*
+            6. Declare uma função que
+        */
+        function concentra() {
+            /* 6a. leia o valor digitado pelo usuário; */
+            let num = parseFloat(elNum.value)
+
+            /* 6b. verifique se o valor digitado corresponde ao número válido; */
+            if(isNaN(num)) {
+                alert('Informe um número válido!')
+                elNum.focus()
+            }
+            else {
+                /* 6c. caso tenha passado na validação, insira o número no início 
+                    do vetor declarado no passo 4; */
+                numeros.unshift(num)
+
+                /* 6d. efetue uma chamada à função codificada no passo 5, passando 
+                    a ela o vetor e capturando o retorno em uma variável; */
+                let soma = somaVet(numeros)
+
+                /* 6e. calcule a média, dividindo o resultado obtido na letra d) 
+                    pelo número de elementos do vetor; */
+                let quant = numeros.length
+                let media = soma / quant
+
+                /* 6f. preencha os lugares reservados à quantidade, à média e à 
+                    soma na página, ajustando a propriedade textContent dos
+                    respectivos elementos; */
+                elQuant.textContent = quant
+                elMedia.textContent = media
+                elSoma.textContent = soma
+
+                /* 6g. limpe o valor do campo numérico e coloque o foco nele. */
+                elNum.value = ''
+                elNum.focus()
+                
+            }
+        }
+        
+        /*
+            7. Associe a função declarada no passo 6 ao evento clique do botão existente na página.
+        */
+       elAcumular.addEventListener('click', concentra)
+
+    </script>
+
+</body>
+
+</html>
